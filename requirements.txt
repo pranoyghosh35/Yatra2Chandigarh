@@ -1,0 +1,9 @@
+streamlit
+pybase64
+langchain
+langchain_community
+langchain_openai
+openai
+chromadb
+tiktoken
+unstructured
