@@ -10,13 +10,43 @@ Yatra2Chandigarh is a chatbot developed as a course project during the Plaksha T
 
 Whether you are a tourist exploring the "City Beautiful," a business traveler attending meetings and conferences, or someone considering moving to Chandigarh, Yatra2Chandigarh is here to assist you. Leveraging web-information (as of 11th Feb 2024) from the Chandigarh Industrial and Tourism Development Corporation Limited (CITCO), this virtual guide offers insights into various aspects of Chandigarh, including tourist attractions, local cuisine, accommodation, transportation, and more.
 
-## Usage
+## Setup Instructions
 
-If you clone from github, recommend creating a virtual environment and use 'requirements.txt' to install all dependencies. 
-Please copy securely your OpenAI key in 'api_key.txt' (don't share publicly)
-Finally 'streamlit run run_me.py'.
+### Prerequisites
 
-If you are unsure of its capabilities, try asking about itself and what topics or example questions it can answer.
+- Python 3.9 or higher
+- pip (Python package installer)
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/pranoyghosh35/Yatra2Chandigarh.git
+    cd Yatra2Chandigarh
+    ```
+
+2. Create a virtual environment and activate it:
+    ```sh
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+3. Install the required packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+    
+Or build docker image and run it.
+
+- docker build -t app .
+- docker run -p 8501:8501 app
+
+### Running the App
+
+Please execute below to open the Streamlit app in browser:
+```sh
+streamlit run app.py
+```
 
 ## Example Questions
 
@@ -45,7 +75,7 @@ Chroma DB is an open-source vector storage system (vector database) designed for
 
 ### Combining RAG, Langchain, and Vector Databases
 
-We developed a retrieval-augmented AI system that is both generative and retrieval-based by combining the strength of OpenAI’s GPT models, LangChain, and Pinecone Vector Databases. This system can retrieve and use particular pieces of information in addition to producing creative and human-like text.
+We developed a retrieval-augmented AI system that is both generative and retrieval-based by combining the strength of OpenAI’s GPT models, LangChain, and Chroma Vector Databases. This system can retrieve and use particular pieces of information in addition to producing creative and human-like text.
 
 **Reference:** [OpenAI Integration](https://python.langchain.com/docs/integrations/platforms/openai)
 

@@ -1,6 +1,3 @@
-import os
-import streamlit as st
-import base64
 from langchain.chains import RetrievalQA
 from langchain_openai import OpenAI
 from langchain_community.document_loaders import DirectoryLoader
@@ -9,49 +6,40 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
-def read_api_key(file_path):
-    with open(file_path, 'r') as file:
-        api_key = file.read().strip()  # Remove newline characters and leading/trailing whitespaces
-    return api_key
-
-def set_openai_api_key(api_key):
-    os.environ["OPENAI_API_KEY"] = api_key
-
+# Function to load documents from the directory
 def load_docs(directory):
     loader = DirectoryLoader(directory, glob="**/*.txt")
     documents = loader.load()
     return documents
 
+# Function to split documents into chunks for embedding
 def split_documents_into_chunks(documents):
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
     texts = text_splitter.split_documents(documents)
     return texts
 
-def select_embeddings():
-    return OpenAIEmbeddings()
+# Function to select the OpenAI embeddings
+def select_embeddings(api_key):
+    return OpenAIEmbeddings(openai_api_key=api_key)
 
+# Function to create the Chroma vectorstore
 def create_vectorstore(texts, embeddings):
     return Chroma.from_documents(texts, embeddings)
 
+# Function to create a retriever for similarity-based searches
 def create_retriever(db):
     return db.as_retriever(search_type='similarity', search_kwargs={"k": 2})
 
+# Function to create the question-answer chain
 def create_qa_chain(llm, retriever):
     return RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=False)
 
-def ask_setup():
-    # Initialize an empty list to store chat history
-    print("Please wait as we connect...",end="")
+# Main function to set up the QA system
+def ask_setup(api_key):
+    print("Please wait as we connect...", end="")
 
-    # Read API key from api_key.txt file
-    api_key_file = os.path.join(os.path.dirname(__file__), 'api_key.txt')
-    api_key = read_api_key(api_key_file)
-
-    # Set OpenAI API key in environment variable
-    set_openai_api_key(api_key)
-    #print("Setting api_key Done!")
     # Directory where text files are stored
-    directory = "chandigarh_data/"
+    directory = "backend/chandigarh_data"
 
     # Load all the text files in the directory
     documents = load_docs(directory)
@@ -60,18 +48,19 @@ def ask_setup():
     texts = split_documents_into_chunks(documents)
 
     # Select embeddings
-    embeddings = select_embeddings()
+    embeddings = select_embeddings(api_key)
 
     # Create the vectorstore to use as the index
     db = create_vectorstore(texts, embeddings)
 
     # Expose the index in a retriever interface
     retriever = create_retriever(db)
-    #print("Database Ready!")
+
     # Create instance to interact with OpenAI's language models
-    llm = OpenAI()  # Instance to interact with OpenAI's language models. Default - GPT-3.5 Turbo
+    llm = OpenAI(openai_api_key=api_key)  # Pass the API key to OpenAI
 
     # Create a chain to answer questions
     qa = create_qa_chain(llm, retriever)
+    
     print("Ready to respond!")
     return qa
