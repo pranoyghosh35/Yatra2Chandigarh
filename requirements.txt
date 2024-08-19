@@ -1,4 +1,5 @@
 streamlit
+unstructured
 requests
 beautifulsoup4
 langchain

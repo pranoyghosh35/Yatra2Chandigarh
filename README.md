@@ -1,7 +1,7 @@
 # Yatra2Chandigarh
 
 <p align="center">
-  <img src="chandigarh_data/chandigarh_hand_symbol.jpg" alt="Open Hand" width="25%" height="25%">
+  <img src="backend/images/chandigarh_hand_symbol.jpg" alt="Open Hand" width="25%" height="25%">
 </p>
 
 Yatra2Chandigarh is a chatbot developed as a course project during the Plaksha Tech Leaders Fellowship 2023-24. It is designed to provide information and answer questions about the city of Chandigarh.
