@@ -18,7 +18,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Download the NLTK tokenizer data
-RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
+RUN python -c "import nltk; nltk.download('punkt_tab')"
 
 # Expose the port Streamlit runs on
 EXPOSE 8501
