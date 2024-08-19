@@ -1,3 +1,4 @@
+import pytz
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -11,12 +12,16 @@ def determine_season(month):
         return "Winter"
 
 def get_system_info():
-    # Fetch date and time
-    now = datetime.now()
-    date = now.strftime("%A %d %B, %Y")
-    month = now.strftime("%B")
-    current_time = now.strftime("%I:%M %p")
-
+    # Define the IST timezone
+    ist = pytz.timezone('Asia/Kolkata')
+    
+    # Fetch date and time in UTC and convert to IST
+    now = datetime.now(pytz.utc)
+    now_ist = now.astimezone(ist)
+    
+    date = now_ist.strftime("%A %d %B, %Y")
+    month = now_ist.strftime("%B")
+    current_time = now_ist.strftime("%I:%M %p")
 
     # Determine weather (placeholder, can be integrated with live API)
     weather = "sunny"  # Example weather condition
@@ -30,5 +35,5 @@ def get_system_info():
         "month": month,
         "weather": weather,
         "season": season,
-        "current_time":current_time
+        "current_time": current_time
     }
