@@ -17,6 +17,9 @@ COPY . /app
 # Install any dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Download the NLTK punkt tokenizer data
+RUN python -m nltk.downloader punkt
+
 # Expose the port Streamlit runs on
 EXPOSE 8501
 
