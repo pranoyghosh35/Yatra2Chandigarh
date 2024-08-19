@@ -45,7 +45,7 @@ Or build docker image and run it.
 
 Please execute below to open the Streamlit app in browser:
 ```sh
-streamlit run app.py
+streamlit run gapp.py
 ```
 
 ## Example Questions
