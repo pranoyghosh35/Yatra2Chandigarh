@@ -1,9 +1,7 @@
 streamlit
-pybase64
+requests
+beautifulsoup4
 langchain
-langchain_community
-langchain_openai
-openai
+langchain-openai
+langchain-community
 chromadb
-tiktoken
-unstructured

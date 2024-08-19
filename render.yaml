@@ -1,0 +1,11 @@
+services:
+- type: web
+  name: yatra2chandigarh
+  env: python
+  buildCommand: "pip install -r requirements.txt"
+  startCommand: "streamlit run gapp.py"
+  envVars:
+  - key: STREAMLIT_ENV
+    value: production
+  - key: PORT
+    value: "8501"

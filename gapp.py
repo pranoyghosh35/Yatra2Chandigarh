@@ -55,6 +55,7 @@ with st.sidebar:  # Positioning on the right side
             f"🕒 {system_info['current_time']}\n"
             f"☁️ {system_info['weather']} {weather_emoji}\n"
             f"🌡️ Season: {system_info['season']}\n"
+            "\n... Also may edit your notes here ...\n"
         ),
         height=200,
     )

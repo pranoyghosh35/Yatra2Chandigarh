@@ -87,8 +87,9 @@ There are different ways to do question answering in LangChain. We used the Conv
 
 ## Future Development Scope
 
-**Keeping it up-to-date is easy for anyone:** Create a plain text file containing the latest information about Chandigarh and save it to the unzipped 'chandigarh_data/' folder. It is better if you can format the new information in small paragraphs and add sample questions below it.
+- google gemini for those without openapi key.
+- option to upload documents & images so that user can understand their bookings or understand more about the picture or tell about themselves for custmized itineraries!
 
 ## Enjoy!!
-YouTube: https://youtu.be/35RFzvTBy6o,
+YouTube: https://youtu.be/xOFEsX0Sp9A,
 Write to pranoy.ghosh.tlp23@plaksha.edu.in for feedback.
