@@ -39,7 +39,7 @@ def get_weather_tag(description):
         return "unknown", ""
 
 # Function to get current weather and forecast for 12 hours around the current time
-def get_weather_and_forecast(city="Chandigarh", api_key="f3e1b8d4df48fff23532db63d0d7bbee"):
+def get_weather_and_forecast(city="Chandigarh", api_key=WEATHER_KEY):
     base_url = "http://api.openweathermap.org/data/2.5/"
     
     # Get current weather
