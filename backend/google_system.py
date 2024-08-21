@@ -1,3 +1,4 @@
+import os
 import pytz
 import requests
 from bs4 import BeautifulSoup
@@ -39,7 +40,7 @@ def get_weather_tag(description):
         return "unknown", ""
 
 # Function to get current weather and forecast for 12 hours around the current time
-def get_weather_and_forecast(city="Chandigarh", api_key=WEATHER_KEY):
+def get_weather_and_forecast(city="Chandigarh", api_key=os.getenv('WEATHER_KEY')):
     base_url = "http://api.openweathermap.org/data/2.5/"
     
     # Get current weather
